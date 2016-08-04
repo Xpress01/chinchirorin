@@ -52,22 +52,27 @@ var noScore = [];
             winRoll = winRoll.toString();
             if (x === storm || x === tripleOne) {
                 console.log("You lose");
+                document.getElementById("results").innerHTML = "You Lose"
                 
     //4.b If user rolls a [4,5,6] automatic win
             } else if (x === winRoll) {
                 console.log("You win 2x");
+                document.getElementById("results").innerHTML = "You Win!"
     //4.c Get scores for user and pc. 
             } else {getScores(user_roll, user_score);
                     getScores(pc_roll, pc_score);
                     if (user_score.toString() === noScore.toString() && pc_score.toString() === noScore.toString()) {
                         document.getElementById("playerScore").innerHTML = '0';
                         document.getElementById("pcScore").innerHTML = '0';
+                        document.getElementById("results").innerHTML = "Draw"
                     } else if (user_score.toString() == noScore.toString() && pc_score.length > 0) {
                         document.getElementById("playerScore").innerHTML = '0';
                         document.getElementById("pcScore").innerHTML = pc_score[0];
+                        document.getElementById("results").innerHTML = "You Lose"
                     } else if (pc_score.toString() == noScore.toString() && user_score.length > 0) {
                         document.getElementById("pcScore").innerHTML = '0';
                         document.getElementById("playerScore").innerHTML = user_score[0];
+                        document.getElementById("results").innerHTML = "You Win!"
                     }
                     
                     else {
@@ -77,15 +82,19 @@ var noScore = [];
                     //4.d If user and compueter do not roll doubles, it is a draw.
                     if (user_score.toString() === pc_score.toString()) {
                         console.log("It's a draw")
+                        document.getElementById("results").innerHTML = "Draw"
                     } else if (user_score.length === 2 && user_roll !== storm) {
                         console.log("You win 3x");
+                        document.getElementById("results").innerHTML = "You Win!"
                     //4.e If user rolls doubles, and computer rolls nothing, user wins
                     //4.f If user rolls doubles, and computer rolls doubles that is lower, user wins. 
                     } else if (user_score.toString() > pc_score.toString()){
                         console.log("You win")
+                        document.getElementById("results").innerHTML = "You Win!"
                     //4.g If user rolls nothing, and computer rolls doubles, computer wins. 
                     } else {
                         console.log("You lose")
+                        document.getElementById("results").innerHTML = "You Lose"
                     }
                     
             }
