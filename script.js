@@ -5,6 +5,7 @@ var pc_score = [];
 var storm = [1, 2, 3];
 var tripleOne = [1,1,1];
 var winRoll = [4,5,6];
+var noScore = [];
 
 //1. Roll dice 
     function rollDice(x) {
@@ -23,7 +24,8 @@ var winRoll = [4,5,6];
         user_roll.push(rollDice());
         user_roll.sort();
         console.log("This is the players score: " + user_roll);
-
+        document.getElementById("playerRoll").innerHTML = user_roll;
+        
 //3. Computer rolls 3 dice
         pc_roll = [];
         pc_roll.push(rollDice());
@@ -31,7 +33,7 @@ var winRoll = [4,5,6];
         pc_roll.push(rollDice());
         pc_roll.sort();
         console.log("This is the pc score: " + pc_roll);
-        
+        document.getElementById("pcRoll").innerHTML = pc_roll;      
     //3.a Get scores
     function getScores(x, y) {
                     for (var i=0; i < x.length - 1; i++) {
@@ -57,6 +59,21 @@ var winRoll = [4,5,6];
     //4.c Get scores for user and pc. 
             } else {getScores(user_roll, user_score);
                     getScores(pc_roll, pc_score);
+                    if (user_score.toString() === noScore.toString() && pc_score.toString() === noScore.toString()) {
+                        document.getElementById("playerScore").innerHTML = '0';
+                        document.getElementById("pcScore").innerHTML = '0';
+                    } else if (user_score.toString() == noScore.toString() && pc_score.length > 0) {
+                        document.getElementById("playerScore").innerHTML = '0';
+                        document.getElementById("pcScore").innerHTML = pc_score[0];
+                    } else if (pc_score.toString() == noScore.toString() && user_score.length > 0) {
+                        document.getElementById("pcScore").innerHTML = '0';
+                        document.getElementById("playerScore").innerHTML = user_score[0];
+                    }
+                    
+                    else {
+                        document.getElementById("playerScore").innerHTML = user_score[0];
+                        document.getElementById("pcScore").innerHTML = pc_score[0];
+                    }
                     //4.d If user and compueter do not roll doubles, it is a draw.
                     if (user_score.toString() === pc_score.toString()) {
                         console.log("It's a draw")
